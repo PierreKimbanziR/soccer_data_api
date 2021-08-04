@@ -1,10 +1,18 @@
+# Create your models here.
 from django.db import models
 from django.db.models.lookups import StartsWith
 
 # Create your models here.
-class TeamSeasonStats(models.Model):
-    team_name = models.CharField(max_length=200, primary_key=True)
-    number_of_players = models.IntegerField()
+class PlayerSeasonStats(models.Model):
+
+    team_name = models.ForeignKey(
+        "teams.TeamSeasonStats", on_delete=models.CASCADE, related_name="players"
+    )
+
+    player_name = models.CharField(max_length=200, primary_key=True)
+    nation = models.CharField(max_length=200)
+    position = models.CharField(max_length=200)
+    age = models.IntegerField()
     mean_age_of_players = models.FloatField()
     possession = models.FloatField()
     matches_played = models.IntegerField()
@@ -38,15 +46,15 @@ class TeamSeasonStats(models.Model):
     npxG_xA_per_90 = models.FloatField()
 
     def __str__(self):
-        return self.team_name
+        return self.player_name
 
     def save(self, *args, **kwargs):
         self.full_clean()
-        super(TeamSeasonStats, self).save(*args, **kwargs)
+        super(PlayerSeasonStats, self).save(*args, **kwargs)
 
     def clean(self):
-        if self.team_name:
-            self.team_name = self.team_name.strip()
+        if self.player_name:
+            self.player_name = self.player_name.strip()
 
     class Meta:
-        ordering = ("team_name",)
+        ordering = ("player_name",)
