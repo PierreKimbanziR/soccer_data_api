@@ -3,5 +3,6 @@ from .models import TeamSeasonStats
 
 
 class TeamSeasonStatsSerializer(serializers.ModelSerializer):
-    model: TeamSeasonStats
-    fields: "__all__"
+    class Meta:
+        model = TeamSeasonStats
+        fields = "__all__"
