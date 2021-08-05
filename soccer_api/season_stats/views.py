@@ -11,25 +11,37 @@ from season_stats.models import PlayerSeasonStats
 from season_stats.serializers import PlayerSeasonStatsSerializer
 
 
-class TeamSeasonStatsList(generics.ListAPIView):
+class TeamSeasonStatsList(generics.ListCreateAPIView):
     queryset = TeamSeasonStats.objects.all()
     serializer_class = TeamSeasonStatsSerializer
-    name = "team-season-stats-list"
+    name = "teams-season-stats-list"
 
 
 class TeamSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TeamSeasonStats.objects.all()
     serializer_class = TeamSeasonStatsSerializer
-    name = "team-season-stats-detail"
+    name = "teams-season-stats-detail"
 
 
-class PlayerSeasonsStatsList(generics.ListAPIView):
+class PlayerSeasonsStatsList(generics.ListCreateAPIView):
     queryset = PlayerSeasonStats.objects.all()
     serializer_class = PlayerSeasonStatsSerializer
-    name = "player-stats-list"
+    name = "players-season-stats-list"
 
 
-class PlayerSeasonStatsDetail(generics.RetrieveUpdateAPIView):
+class PlayerSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PlayerSeasonStats.objects.all()
     serializer_class = PlayerSeasonStatsSerializer
-    name = "player-stats-detail"
+    name = "players-season-stats-detail"
+
+
+class SeasonStatsRoot(generics.GenericAPIView):
+    name = "season-stats-root"
+
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {
+                "teams": reverse(TeamSeasonStatsList.name, request=request),
+                "player": reverse(PlayerSeasonsStatsList.name, request=request),
+            }
+        )

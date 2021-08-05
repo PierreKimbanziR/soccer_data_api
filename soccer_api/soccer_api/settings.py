@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "teams.apps.TeamsConfig",
-    "players.apps.PlayersConfig",
+    "season_stats.apps.SeasonStatsConfig",
 ]
 
 MIDDLEWARE = [

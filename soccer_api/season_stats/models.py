@@ -3,7 +3,9 @@ from django.db.models.lookups import StartsWith
 
 # Create your models here.
 class TeamSeasonStats(models.Model):
-    team_name = models.CharField(max_length=200, primary_key=True)
+    team_name = models.CharField(
+        max_length=200, primary_key=True, unique=True, blank=False
+    )
     number_of_players = models.IntegerField()
     mean_age_of_players = models.FloatField()
     possession = models.FloatField()
@@ -40,14 +42,6 @@ class TeamSeasonStats(models.Model):
     def __str__(self):
         return self.team_name
 
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(TeamSeasonStats, self).save(*args, **kwargs)
-
-    def clean(self):
-        if self.team_name:
-            self.team_name = self.team_name.strip()
-
     class Meta:
         ordering = ("team_name",)
 
@@ -59,12 +53,12 @@ class PlayerSeasonStats(models.Model):
         "TeamSeasonStats", on_delete=models.CASCADE, related_name="players"
     )
 
-    player_name = models.CharField(max_length=200, primary_key=True)
+    player_name = models.CharField(
+        max_length=200, primary_key=True, unique=True, blank=False
+    )
     nation = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
     age = models.IntegerField()
-    mean_age_of_players = models.FloatField()
-    possession = models.FloatField()
     matches_played = models.IntegerField()
     starts = models.IntegerField()
     minutes_played = models.IntegerField()
@@ -98,13 +92,8 @@ class PlayerSeasonStats(models.Model):
     def __str__(self):
         return self.player_name
 
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(PlayerSeasonStats, self).save(*args, **kwargs)
-
-    def clean(self):
-        if self.player_name:
-            self.player_name = self.player_name.strip()
+    def create_player_name(self):
+        return f"{self.first_name}_{self.last_name}"
 
     class Meta:
         ordering = ("player_name",)

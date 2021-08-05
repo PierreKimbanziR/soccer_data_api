@@ -1,23 +1,18 @@
-from soccer_api.teams.models import TeamSeasonStats
 from rest_framework import serializers
-from .models import PlayerSeasonStats, TeamSeasonStats
+from season_stats.models import PlayerSeasonStats, TeamSeasonStats
 
 
-
-
-class TeamSeasonStatsSerializer(serializers.HyperlinkedModelSerializer):
-    players = serializers.HyperlinkedRelatedField(
-        many=True, read_only=True, view_name="player-stats-detail"
-    )
+class TeamSeasonStatsSerializer(serializers.ModelSerializer):
+    players = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = TeamSeasonStats
         fields = "__all__"
 
 
-class PlayerSeasonStatsSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSeasonStatsSerializer(serializers.ModelSerializer):
     team_name = serializers.SlugRelatedField(
-        queryset=TeamSeasonStats.objects.all(), slugfield="team_name"
+        queryset=TeamSeasonStats.objects.all(), slug_field="team_name"
     )
 
     class Meta:
