@@ -9,12 +9,17 @@ from season_stats.models import TeamSeasonStats
 from season_stats.serializers import TeamSeasonStatsSerializer
 from season_stats.models import PlayerSeasonStats
 from season_stats.serializers import PlayerSeasonStatsSerializer
+from rest_framework import filters
+from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
 
 
 class TeamSeasonStatsList(generics.ListCreateAPIView):
     queryset = TeamSeasonStats.objects.all()
     serializer_class = TeamSeasonStatsSerializer
     name = "teams-season-stats-list"
+    filter_fields = ("team_name",)
+    search_fields = ("^team_name",)
+    ordering_fields = ("team_name",)
 
 
 class TeamSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -27,6 +32,9 @@ class PlayerSeasonsStatsList(generics.ListCreateAPIView):
     queryset = PlayerSeasonStats.objects.all()
     serializer_class = PlayerSeasonStatsSerializer
     name = "players-season-stats-list"
+    filter_fields = ("player_name", "team_name")
+    ordering_fields = "player_name"
+    search_fields = ("player_name",)
 
 
 class PlayerSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
