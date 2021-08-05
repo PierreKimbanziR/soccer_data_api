@@ -4,6 +4,9 @@ from django.db.models.lookups import StartsWith
 # Create your models here.
 class TeamSeasonStats(models.Model):
     team_name = models.CharField(max_length=200, primary_key=True)
+    owner = models.ForeignKey(
+        "auth.user", related_name="teams", on_delete=models.CASCADE
+    )
     number_of_players = models.IntegerField()
     mean_age_of_players = models.FloatField()
     possession = models.FloatField()
@@ -54,6 +57,9 @@ class PlayerSeasonStats(models.Model):
     player_name = models.CharField(
         max_length=200,
         primary_key=True,
+    )
+    owner = models.ForeignKey(
+        "auth.user", related_name="players", on_delete=models.CASCADE
     )
     nation = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
