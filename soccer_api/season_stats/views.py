@@ -12,6 +12,9 @@ from season_stats.serializers import PlayerSeasonStatsSerializer
 from rest_framework import filters
 from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
 
+from rest_framework import permissions
+from season_stats import custompermissions
+
 
 class TeamSeasonStatsList(generics.ListCreateAPIView):
     queryset = TeamSeasonStats.objects.all()
@@ -20,12 +23,23 @@ class TeamSeasonStatsList(generics.ListCreateAPIView):
     filter_fields = ("team_name",)
     search_fields = ("^team_name",)
     ordering_fields = ("team_name",)
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermissions.IsCurrentUserOwnerOrReadOnly,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class TeamSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TeamSeasonStats.objects.all()
     serializer_class = TeamSeasonStatsSerializer
     name = "teams-season-stats-detail"
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermissions.IsCurrentUserOwnerOrReadOnly,
+    )
 
 
 class PlayerSeasonsStatsList(generics.ListCreateAPIView):
@@ -35,12 +49,23 @@ class PlayerSeasonsStatsList(generics.ListCreateAPIView):
     filter_fields = ("player_name", "team_name")
     ordering_fields = "player_name"
     search_fields = ("player_name",)
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermissions.IsCurrentUserOwnerOrReadOnly,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class PlayerSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PlayerSeasonStats.objects.all()
     serializer_class = PlayerSeasonStatsSerializer
     name = "players-season-stats-detail"
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermissions.IsCurrentUserOwnerOrReadOnly,
+    )
 
 
 class SeasonStatsRoot(generics.GenericAPIView):

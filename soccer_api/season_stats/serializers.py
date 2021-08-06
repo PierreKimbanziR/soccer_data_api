@@ -35,7 +35,7 @@ class TeamSeasonStatsSerializer(serializers.ModelSerializer):
 
 class PlayerSeasonStatsSerializer(serializers.ModelSerializer):
     team_name = serializers.SlugRelatedField(
-        queryset=TeamSeasonStats.objects.all(), slug_field="team_name"
+        queryset=TeamSeasonStats.objects.all(), slug_field="team_name", allow_null=True
     )
     owner = serializers.ReadOnlyField(source="owner.username")
 

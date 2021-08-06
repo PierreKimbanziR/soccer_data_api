@@ -5,7 +5,11 @@ from django.db.models.lookups import StartsWith
 class TeamSeasonStats(models.Model):
     team_name = models.CharField(max_length=200, primary_key=True)
     owner = models.ForeignKey(
-        "auth.user", related_name="teams", on_delete=models.CASCADE
+        "auth.User",
+        related_name="teams",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
     number_of_players = models.IntegerField()
     mean_age_of_players = models.FloatField()
@@ -51,7 +55,11 @@ class TeamSeasonStats(models.Model):
 class PlayerSeasonStats(models.Model):
 
     team_name = models.ForeignKey(
-        "TeamSeasonStats", on_delete=models.CASCADE, related_name="players"
+        "TeamSeasonStats",
+        on_delete=models.CASCADE,
+        related_name="players",
+        null=True,
+        blank=True,
     )
 
     player_name = models.CharField(
@@ -59,7 +67,7 @@ class PlayerSeasonStats(models.Model):
         primary_key=True,
     )
     owner = models.ForeignKey(
-        "auth.user", related_name="players", on_delete=models.CASCADE
+        "auth.User", related_name="+", on_delete=models.CASCADE, null=True, blank=True
     )
     nation = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
