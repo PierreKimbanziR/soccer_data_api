@@ -15,6 +15,8 @@ from django_filters import AllValuesFilter, DateTimeFilter, NumberFilter
 from rest_framework import permissions
 from season_stats import custompermissions
 
+from rest_framework.throttling import ScopedRateThrottle
+
 
 class TeamSeasonStatsList(generics.ListCreateAPIView):
     queryset = TeamSeasonStats.objects.all()
@@ -27,6 +29,8 @@ class TeamSeasonStatsList(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly,
         custompermissions.IsCurrentUserOwnerOrReadOnly,
     )
+    throttle_scope = "teams"
+    throttle_classes = (ScopedRateThrottle,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -40,6 +44,8 @@ class TeamSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
         permissions.IsAuthenticatedOrReadOnly,
         custompermissions.IsCurrentUserOwnerOrReadOnly,
     )
+    throttle_scope = "teams"
+    throttle_classes = (ScopedRateThrottle,)
 
 
 class PlayerSeasonsStatsList(generics.ListCreateAPIView):
@@ -53,6 +59,8 @@ class PlayerSeasonsStatsList(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly,
         custompermissions.IsCurrentUserOwnerOrReadOnly,
     )
+    throttle_scope = "players"
+    throttle_classes = (ScopedRateThrottle,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -66,6 +74,8 @@ class PlayerSeasonStatsDetail(generics.RetrieveUpdateDestroyAPIView):
         permissions.IsAuthenticatedOrReadOnly,
         custompermissions.IsCurrentUserOwnerOrReadOnly,
     )
+    throttle_scope = "players"
+    throttle_classes = (ScopedRateThrottle,)
 
 
 class SeasonStatsRoot(generics.GenericAPIView):

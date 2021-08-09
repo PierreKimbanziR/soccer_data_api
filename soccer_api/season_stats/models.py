@@ -8,8 +8,6 @@ class TeamSeasonStats(models.Model):
         "auth.User",
         related_name="teams",
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
     )
     number_of_players = models.IntegerField()
     mean_age_of_players = models.FloatField()
@@ -58,17 +56,15 @@ class PlayerSeasonStats(models.Model):
         "TeamSeasonStats",
         on_delete=models.CASCADE,
         related_name="players",
-        null=True,
         blank=True,
+        null=True,
     )
 
     player_name = models.CharField(
         max_length=200,
         primary_key=True,
     )
-    owner = models.ForeignKey(
-        "auth.User", related_name="+", on_delete=models.CASCADE, null=True, blank=True
-    )
+    owner = models.ForeignKey("auth.User", related_name="+", on_delete=models.CASCADE)
     nation = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
     age = models.IntegerField()

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "season_stats.apps.SeasonStatsConfig",
     "django_filters",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -139,4 +140,14 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ),
+    "DEFAULT_THROTTLE_CLASSES": (
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ),
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "3/hour",
+        "user": "50/hour",
+        "teams": "25/hour",
+        "players": "25/hour",
+    },
 }
