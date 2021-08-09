@@ -1,26 +1,26 @@
-from django.conf.urls import url
+from django.urls import re_path
 from season_stats import views
 
 urlpatterns = [
-    url(
+    re_path(
         r"^teams/$",
         views.TeamSeasonStatsList.as_view(),
         name=views.TeamSeasonStatsList.name,
     ),
-    url(
+    re_path(
         r"^teams/(?P<pk>[\w\s]+)$",
         views.TeamSeasonStatsDetail.as_view(),
         name=views.TeamSeasonStatsDetail.name,
     ),
-    url(
+    re_path(
         r"^players/$",
         views.PlayerSeasonsStatsList.as_view(),
         name=views.PlayerSeasonsStatsList.name,
     ),
-    url(
+    re_path(
         r"^players/(?P<pk>[-\w\s]+)$",
         views.PlayerSeasonStatsDetail.as_view(),
         name=views.PlayerSeasonStatsDetail.name,
     ),
-    url(r"^$", views.SeasonStatsRoot.as_view(), name=views.SeasonStatsRoot.name),
+    re_path(r"^$", views.SeasonStatsRoot.as_view(), name=views.SeasonStatsRoot.name),
 ]

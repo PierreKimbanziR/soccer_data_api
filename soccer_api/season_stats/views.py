@@ -22,8 +22,8 @@ class TeamSeasonStatsList(generics.ListCreateAPIView):
     queryset = TeamSeasonStats.objects.all()
     serializer_class = TeamSeasonStatsSerializer
     name = "teams-season-stats-list"
-    filter_fields = ("team_name",)
-    search_fields = ("^team_name",)
+    filterset_fields = ("team_name",)
+    search_fields = ("team_name",)
     ordering_fields = ("team_name",)
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
@@ -52,7 +52,7 @@ class PlayerSeasonsStatsList(generics.ListCreateAPIView):
     queryset = PlayerSeasonStats.objects.all()
     serializer_class = PlayerSeasonStatsSerializer
     name = "players-season-stats-list"
-    filter_fields = ("player_name", "team_name")
+    filterset_fields = ("player_name", "team_name")
     ordering_fields = "player_name"
     search_fields = ("player_name",)
     permission_classes = (

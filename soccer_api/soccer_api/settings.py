@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "season_stats.apps.SeasonStatsConfig",
     "django_filters",
     "rest_framework.authtoken",
+    "faker"
 ]
 
 MIDDLEWARE = [
@@ -145,9 +146,9 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ),
     "DEFAULT_THROTTLE_RATES": {
-        "anon": "3/hour",
-        "user": "50/hour",
-        "teams": "25/hour",
-        "players": "25/hour",
+        "anon": "300/hour",
+        "user": "500/hour",
+        "teams": "250/hour",
+        "players": "250/hour",
     },
 }
