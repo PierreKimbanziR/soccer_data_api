@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TeamsConfig(AppConfig):
+class SeasonStatsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'teams'
+    name = 'season_stats'
