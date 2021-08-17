@@ -13,4 +13,4 @@ This api will be part of a data pipeline which is also under development
 
 Below you can see the structure of the rest api. The major components will be detailled in further steps.
 
-![bpmn](assets/images/rest_api_bpmn.png)
+![bpmn](soccer_api/assets/images/rest_api_bpmn.png)
