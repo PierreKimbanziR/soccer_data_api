@@ -8,3 +8,9 @@ This api will be part of a data pipeline which is also under development
 
 ## Objectives 
 - Program a rest api to serve previously collected data from the English football championships.
+
+## Project structure
+
+Below you can see the structure of the rest api. The major components will be detailled in further steps.
+
+![bpmn](assets/images/rest_api_bpmn.png)
