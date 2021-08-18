@@ -1,4 +1,7 @@
-# Premier League Rest Api  
+# Premier League Rest Api 
+
+## Disclaimer  
+This project is intended for personal, non-profit use. The access is therefore private. If you want to integrate the api in one of your project you can contact me by mail at this address pierre.kimbanzi@gmail.com. 
 
 ## Motivations behind this project  
 
