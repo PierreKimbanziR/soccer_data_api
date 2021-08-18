@@ -37,11 +37,13 @@ This is what an entry looks like for a player :
 
 ![team_entry](soccer_api/assets/images/playersrealdata.png)
 
-### Data Explanation  
-#### Player Season Data  
+### Data References  
+
 | Feature                      | Explanation                                                                                                            |
 |------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | player_name                  | Name of the player                                                                                                     |
+| player_list                  | List of the players in the team during the season                                                                      |
+| team_name                    | Player's team                                                                                                          |
 | nation                       | Player's nationality                                                                                                   |
 | position                     | Player's position on the pitch                                                                                         |
 | age                          | Player's age                                                                                                           |
@@ -70,4 +72,4 @@ This is what an entry looks like for a player :
 | xG_xA_per_90                 | Expected goals + expected assists by 90.  (Average expected goals + assists by 90)                                     |
 | npxG_per_90                  | Non-penalty expected goals by 90.  (Average non-penalty expected goals per match)                                      |
 | npxG_xA_per_90               | Non-penalty expected goals + expected assists by 90. (Average non-penalty expected goals + expected assists per match) |
-| team_name                    | Player's team                                                                                                          |
+
