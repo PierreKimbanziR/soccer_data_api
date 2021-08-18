@@ -71,5 +71,15 @@ This is what an entry looks like for a player :
 | xA_per_90                    | Expected assists by 90.  (Average expected assists by match)                                                           |
 | xG_xA_per_90                 | Expected goals + expected assists by 90.  (Average expected goals + assists by 90)                                     |
 | npxG_per_90                  | Non-penalty expected goals by 90.  (Average non-penalty expected goals per match)                                      |
-| npxG_xA_per_90               | Non-penalty expected goals + expected assists by 90. (Average non-penalty expected goals + expected assists per match) |
+| npxG_xA_per_90               | Non-penalty expected goals + expected assists by 90. (Average non-penalty expected goals + expected assists per match) |   
 
+
+
+## Endpoints
+- `/season-stats/teams/` : List of every team and their respective stats
+- `/season-stats/teams/<team_name>/` : Single team season stats
+- `/season-stats/players/` : Statistics of all players in all teams
+- `/season-stats/players/<player_name>/` : Statistics of one single single player  
+
+##### Filters
+- `/season-stats/players/?team_name=<team_name>` : Player's statistics from a specific team
