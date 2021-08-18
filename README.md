@@ -39,7 +39,8 @@ This is what an entry looks like for a player :
 
 ### Data Explanation  
 #### Player Season Data  
-
+| Feature                      | Explanation                                                                                                            |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | player_name                  | Name of the player                                                                                                     |
 | nation                       | Player's nationality                                                                                                   |
 | position                     | Player's position on the pitch                                                                                         |
