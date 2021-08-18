@@ -83,3 +83,4 @@ This is what an entry looks like for a player :
 
 ##### Filters
 - `/season-stats/players/?team_name=<team_name>` : Player's statistics from a specific team
+
