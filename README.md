@@ -9,8 +9,30 @@ This api will be part of a data pipeline which is also under development
 ## Objectives 
 - Program a rest api to serve previously collected data from the English football championships.
 
+##  Technologies
+- Django
+- Django Rest Framework 
+- Postgresql
+
 ## Project structure
 
-Below you can see the structure of the rest api. The major components will be detailled in further steps.
+Below you can see the structure of the rest api. The major components will be detailled further in the readme.
 
 ![bpmn](soccer_api/assets/images/rest_api_bpmn.png)
+
+## Data
+The data is scrapped on the website [Fbref.com](https://fbref.com/en/). 
+For the moment it is the statistics of the 2020-21 season.  
+I plan to add more types of data in the future.  
+They are divided into 2 categories: 
+- Seasonal statistics for a team 
+- Seasonal statistics for a player
+### Examples
+
+This is what an entry looks like for a team :  
+
+![team_entry](soccer_api/assets/images/team_data.png)  
+
+This is what an entry looks like for a player :  
+
+![team_entry](soccer_api/assets/images/playersrealdata.png)
