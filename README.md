@@ -20,7 +20,7 @@ Below you can see the structure of the rest api. The major components will be de
 
 ![bpmn](soccer_api/assets/images/rest_api_bpmn.png)
 
-## Data
+## Available data
 The data is scrapped on the website [Fbref.com](https://fbref.com/en/). 
 For the moment it is the statistics of the 2020-21 season.  
 I plan to add more types of data in the future.  
